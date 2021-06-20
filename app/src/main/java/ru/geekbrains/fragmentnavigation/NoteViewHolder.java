@@ -1,8 +1,11 @@
 package ru.geekbrains.fragmentnavigation;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Random;
 
-public class NoteViewHolder extends RecyclerView.ViewHolder {
+public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
     private final TextView subjectTextView;
     private final TextView phoneTextView;
     private final CardView cardView;
@@ -24,15 +27,29 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         phoneTextView = itemView.findViewById(R.id.phone_text_view);
         cardView.setOnClickListener(v -> {
             if (clickListener != null) {
-                clickListener.onItemClick(noteEntity);
+                //clickListener.onItemClick(noteEntity);
+                //}
+                //});
+                //cardView.setCardBackgroundColor(new Random().nextInt());
+                PopupMenu popupMenu = new PopupMenu(cardView.getContext(), cardView);
+                popupMenu.inflate(R.menu.note_menu);
+                popupMenu.setOnMenuItemClickListener(this);
+                popupMenu.show();
             }
-        });
-        cardView.setCardBackgroundColor(new Random().nextInt());
-    }
+            });
+        }
 
     public void bind(NoteEntity noteEntity) {
         this.noteEntity = noteEntity;
         subjectTextView.setText(noteEntity.subject);
         phoneTextView.setText(noteEntity.phone);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+        Toast.makeText(cardView.getContext(), "Нажал, молодец!", Toast.LENGTH_SHORT).show();
+
+        return true;
     }
 }
