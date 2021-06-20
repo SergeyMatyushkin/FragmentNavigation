@@ -36,8 +36,8 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu
                 popupMenu.setOnMenuItemClickListener(this);
                 popupMenu.show();
             }
-            });
-        }
+        });
+    }
 
     public void bind(NoteEntity noteEntity) {
         this.noteEntity = noteEntity;
@@ -48,7 +48,7 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu
     @Override
     public boolean onMenuItemClick(MenuItem item) {
 
-        Toast.makeText(cardView.getContext(), "Нажал, молодец!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(cardView.getContext(), "Нажал, молодец!)", Toast.LENGTH_SHORT).show();
 
         return true;
     }
