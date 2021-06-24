@@ -9,4 +9,7 @@
     <dimen name="note_card_radius">16dp</dimen>
     <dimen name="note_item_subject_text_size">28sp</dimen>
     <dimen name="note_item_phone_text_size">22sp</dimen>
+    <dimen name="size_1">30sp</dimen>
+    <dimen name="margin">8dp</dimen>
+    <dimen name="size_2">26sp</dimen>
 </resources>

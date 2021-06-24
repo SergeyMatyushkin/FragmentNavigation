@@ -1,7 +1,11 @@
 package ru.geekbrains.fragmentnavigation;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -10,11 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Random;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
+
+
     private final TextView subjectTextView;
     private final TextView phoneTextView;
     private final CardView cardView;
@@ -27,10 +34,10 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu
         phoneTextView = itemView.findViewById(R.id.phone_text_view);
         cardView.setOnClickListener(v -> {
             if (clickListener != null) {
-                //clickListener.onItemClick(noteEntity);
-                //}
-                //});
-                //cardView.setCardBackgroundColor(new Random().nextInt());
+                // clickListener.onItemClick(noteEntity);
+                // }
+                //  });
+                cardView.setCardBackgroundColor(new Random().nextInt());
                 PopupMenu popupMenu = new PopupMenu(cardView.getContext(), cardView);
                 popupMenu.inflate(R.menu.note_menu);
                 popupMenu.setOnMenuItemClickListener(this);
@@ -45,11 +52,24 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu
         phoneTextView.setText(noteEntity.phone);
     }
 
-    @Override
+
+    @SuppressLint("NonConstantResourceId")
     public boolean onMenuItemClick(MenuItem item) {
-
-        Toast.makeText(cardView.getContext(), "Нажал, молодец!)", Toast.LENGTH_SHORT).show();
-
-        return true;
+        switch (item.getItemId()) {
+            case R.id.item1_popup:
+                break;
+            case R.id.item2_popup:
+                showBottomSheetDialog();
+                return true;
+        }
+        return false;
     }
+
+
+    private void showBottomSheetDialog() {
+        new NoteDialogFragment().show(getSupportFragmentManager(), null);
+
+    }
+
+
 }
