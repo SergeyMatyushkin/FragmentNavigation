@@ -25,4 +25,8 @@
     <string name="phone_hint">Номер телефона</string>
     <string name="text_hint">Мои мысли мои скакуны</string>
     <string name="save_button">Сохранить</string>
+    <string name="text1">ДА</string>
+    <string name="text_2">ВЫХОД</string>
+    <string name="deleye_text">удалить заметку</string>
+    <string name="text_dialog">Вы действительно хотите удалить Заметку?</string>
 </resources>

@@ -1,17 +1,27 @@
 package ru.geekbrains.fragmentnavigation;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Random;
 
-public class NoteViewHolder extends RecyclerView.ViewHolder {
+public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu.OnMenuItemClickListener {
+
+
     private final TextView subjectTextView;
     private final TextView phoneTextView;
     private final CardView cardView;
@@ -24,10 +34,16 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         phoneTextView = itemView.findViewById(R.id.phone_text_view);
         cardView.setOnClickListener(v -> {
             if (clickListener != null) {
-                clickListener.onItemClick(noteEntity);
+                // clickListener.onItemClick(noteEntity);
+                // }
+                //  });
+                cardView.setCardBackgroundColor(new Random().nextInt());
+                PopupMenu popupMenu = new PopupMenu(cardView.getContext(), cardView);
+                popupMenu.inflate(R.menu.note_menu);
+                popupMenu.setOnMenuItemClickListener(this);
+                popupMenu.show();
             }
         });
-        cardView.setCardBackgroundColor(new Random().nextInt());
     }
 
     public void bind(NoteEntity noteEntity) {
@@ -35,4 +51,20 @@ public class NoteViewHolder extends RecyclerView.ViewHolder {
         subjectTextView.setText(noteEntity.subject);
         phoneTextView.setText(noteEntity.phone);
     }
+
+
+    @SuppressLint("NonConstantResourceId")
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item1_popup:
+            case R.id.item2_popup:
+                break;
+            //showBottomSheetDialog();
+        }
+        return false;
+    }
+
+
+
+
 }

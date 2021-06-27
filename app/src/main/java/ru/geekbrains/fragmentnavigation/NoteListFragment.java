@@ -19,6 +19,7 @@ public class NoteListFragment extends Fragment{
 
     private final ArrayList<NoteEntity> noteList = new ArrayList<>();
     private Button createButton;
+    private Button deleteButton;
     private RecyclerView recyclerView;
     private NotesAdapter adapter;
 
@@ -26,6 +27,7 @@ public class NoteListFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_note_list, container, false);
         createButton = view.findViewById(R.id.create_note_button);
+        deleteButton = view.findViewById(R.id.delete_note_button);
         recyclerView = view.findViewById(R.id.recycler_view);
         return view;
     }
@@ -38,6 +40,9 @@ public class NoteListFragment extends Fragment{
         recyclerView.setAdapter(adapter);
         renderList(noteList);
         createButton.setOnClickListener(v -> getContract().createNewNote());
+        deleteButton.setOnClickListener(v -> getContract().showBottomSheetDialog());
+
+
     }
 
     @Override
@@ -79,6 +84,8 @@ public class NoteListFragment extends Fragment{
     interface Contract {
         void createNewNote();
         void editNote(NoteEntity note);
+        void showBottomSheetDialog();
     }
+
 
 }
