@@ -57,19 +57,14 @@ public class NoteViewHolder extends RecyclerView.ViewHolder implements PopupMenu
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item1_popup:
-                break;
             case R.id.item2_popup:
-                showBottomSheetDialog();
-                return true;
+                break;
+            //showBottomSheetDialog();
         }
         return false;
     }
 
 
-    private void showBottomSheetDialog() {
-        new NoteDialogFragment().show(getSupportFragmentManager(), null);
-
-    }
 
 
 }

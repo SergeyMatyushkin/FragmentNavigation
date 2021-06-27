@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/size_1"
         android:textColor="@color/material_on_surface_emphasis_medium"
-        android:text="Вы действительно хотите удалить Заметку?" />
+        android:text="@string/text_dialog" />
 
     <Button
         android:layout_width="match_parent"

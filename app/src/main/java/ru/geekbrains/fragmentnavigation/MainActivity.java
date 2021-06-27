@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
         initView();
         isTwoPaneMode = findViewById(R.id.optional_fragment_container) != null;
         showNoteList();
+
     }
 
     private void initView() {
@@ -279,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
         noteListFragment.addNote(note);
     }
 
+    public void showBottomSheetDialog() {
+        new NoteDialogFragment().show(getSupportFragmentManager(), null);
 
-
+    }
 }
